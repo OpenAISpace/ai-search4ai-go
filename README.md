@@ -1,6 +1,6 @@
 # Search4AI-Go
 
-Search4AI-Go 是一个用 Go 语言实现的 AI 搜索代理服务，它允许大型语言模型通过 API 调用来获取实时互联网信息。这是 [search2ai](https://github.com/liyown/search2ai) 项目的 Go 语言版本。
+Search4AI-Go 是一个用 Go 语言实现的 AI 搜索代理服务，它允许大型语言模型通过 API 调用来获取实时互联网信息
 
 ## 功能特点
 

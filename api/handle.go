@@ -67,7 +67,7 @@ func handleStreamingResponse(c *gin.Context, resp *http.Response, req *ChatCompl
 }
 
 func handleNonStreamingResponse(c *gin.Context, resp *http.Response, req *ChatCompletionRequest) {
-	var openaiResp ChatCompletionResponse
+	var openaiResp ChatCompletionResponseWithSearchResults
 	if err := json.NewDecoder(resp.Body).Decode(&openaiResp); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "error parsing OpenAI response"})
 		return
@@ -94,12 +94,22 @@ func handleNonStreamingResponse(c *gin.Context, resp *http.Response, req *ChatCo
 					return
 				}
 
+				// update search results
+				c.Set("searchResults", toolResults)
+
 				c.Request.Body = io.NopCloser(bytes.NewReader(body))
+				// 使用递归请求处理工具结果
 				handleChatCompletions(c)
 				return
 			}
+
 		}
+
 	}
+
+	// update search results
+	searchResults, _ := c.Get("searchResults")
+	openaiResp.SearchResults = searchResults.([]map[string]interface{})
 
 	c.JSON(resp.StatusCode, openaiResp)
 }

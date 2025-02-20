@@ -21,6 +21,10 @@ type ChatCompletionResponse struct {
 		FinishReason string                 `json:"finish_reason"`
 	} `json:"choices"`
 }
+type ChatCompletionResponseWithSearchResults struct {
+	ChatCompletionResponse
+	SearchResults []map[string]interface{} `json:"search_results"`
+}
 
 // ToolCall represents a tool call from OpenAI
 type ToolCall struct {
