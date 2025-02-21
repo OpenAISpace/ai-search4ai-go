@@ -53,7 +53,51 @@
 
 ## 快速开始
 
-### 安装
+### 安装方式一：自动安装（推荐）
+
+1. 克隆仓库：
+
+```bash
+git clone https://github.com/liyown/search4ai-go.git
+cd search4ai-go
+```
+
+2. 配置环境变量：
+
+```bash
+cp .env.example .env
+# 编辑 .env 文件，配置必要的环境变量
+```
+
+3. 运行安装脚本：
+
+```bash
+sudo ./install_service.sh
+```
+
+安装脚本会自动：
+- 检查系统环境
+- 编译项目
+- 安装为系统服务
+- 配置开机自启
+- 启动服务
+
+安装完成后，可以使用以下命令管理服务：
+```bash
+# 查看服务状态
+sudo systemctl status search4ai
+
+# 启动服务
+sudo systemctl start search4ai
+
+# 停止服务
+sudo systemctl stop search4ai
+
+# 重启服务
+sudo systemctl restart search4ai
+```
+
+### 安装方式二：手动安装
 
 1. 克隆仓库：
 
